@@ -14,12 +14,15 @@ import {
 } from "./middlewares/errorHandlers.js";
 
 const app = express();
-const { PORT = 5000, DB_URI } = process.env;
+const { PORT = 8000, DB_URI } = process.env;
 
 app
-  .use(cors({ origin: "http://localhost:3000", credentials: true }))
+  .use(
+    cors({ origin: "https://record-shop-on4j.onrender.com", credentials: true })
+  )
   .use(express.json())
   .use(cookieParser())
+  // .use("/", (req, res) => res.send("This is a server api test project"))
   .use("/records", recordsRouter)
   .use("/carts", cartRouter)
   .use("/users", usersRouter)
